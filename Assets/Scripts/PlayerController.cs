@@ -8,14 +8,14 @@ public class PlayerController : MonoBehaviour
     private bool _isInitialised = false;
     private PlayerControls _playerControls;
     private Rigidbody2D _playerRB;
+    private SpriteRenderer _playerSprite;
 
     [SerializeField] private float _playerSpeed = 1.0f;
-    [SerializeField] private SpriteRenderer _playerSprite;
-
-
+    
     private void Awake()
     {
-        _playerRB = GetComponent<Rigidbody2D>();
+        _playerRB = GetComponentInChildren<Rigidbody2D>();
+        _playerSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void InitialisePlayer(PlayerConfig playerConfig)
@@ -39,19 +39,19 @@ public class PlayerController : MonoBehaviour
     private void HandlePlayerMovement()
     {
         var _playerVel = new Vector2(0.0f, 0.0f);
-        if (Input.GetKeyDown(_playerControls.UpKey))
+        if (Input.GetKey(_playerControls.UpKey))
         {
             _playerVel.y += _playerSpeed;
         }
-        if (Input.GetKeyDown(_playerControls.DownKey))
+        if (Input.GetKey(_playerControls.DownKey))
         {
             _playerVel.y -= _playerSpeed;
         }
-        if (Input.GetKeyDown(_playerControls.RightKey))
+        if (Input.GetKey(_playerControls.RightKey))
         {
             _playerVel.x += _playerSpeed;
         }
-        if (Input.GetKeyDown(_playerControls.LeftKey))
+        if (Input.GetKey(_playerControls.LeftKey))
         {
             _playerVel.x -= _playerSpeed;
         }

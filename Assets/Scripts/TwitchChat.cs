@@ -69,6 +69,7 @@ public class TwitchChat : MonoBehaviour
                 message = message.Substring(splitPoint + 1);
 
                 _twithChatBox.text = _twithChatBox.text + "\n" + string.Format("{0}: {1}", chatName, message);
+                TwitchCommandManager.Instance.InterpretTwitchMessage(message);
             }
         }
     }
