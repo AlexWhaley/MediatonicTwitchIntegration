@@ -41,22 +41,22 @@ public class PlayerController : MonoBehaviour
         var _playerVel = new Vector2(0.0f, 0.0f);
         if (Input.GetKey(_playerControls.UpKey))
         {
-            _playerVel.y += _playerSpeed;
+            _playerVel.y += 1;
         }
         if (Input.GetKey(_playerControls.DownKey))
         {
-            _playerVel.y -= _playerSpeed;
+            _playerVel.y -= 1;
         }
         if (Input.GetKey(_playerControls.RightKey))
         {
-            _playerVel.x += _playerSpeed;
+            _playerVel.x += 1;
         }
         if (Input.GetKey(_playerControls.LeftKey))
         {
-            _playerVel.x -= _playerSpeed;
+            _playerVel.x -= 1;
         }
 
-        _playerRB.velocity = _playerVel;
+        _playerRB.velocity = _playerVel.normalized * _playerSpeed;
     }
 }
 

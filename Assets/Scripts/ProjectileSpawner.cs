@@ -39,6 +39,14 @@ public class ProjectileSpawner : MonoBehaviour
         var projectile = GameObject.Instantiate(PrefabManager.Instance.StandardEnemyProfectile, transform.position, transform.rotation);
         var projectileScript = projectile.GetComponent<ProjectileBehaviour>();
 
-        projectileScript.Fire(Vector2.up, _projectileSpeed);
+        Debug.Log(gameObject.name + "- Firing Angle: " + TransformAdjustedFiringAngle);
+        var fireAngle = new Vector2(Mathf.Sin(TransformAdjustedFiringAngle * Mathf.Deg2Rad), Mathf.Cos(TransformAdjustedFiringAngle * Mathf.Deg2Rad));
+
+        projectileScript.Fire(fireAngle, _projectileSpeed);
+    }
+
+    private float TransformAdjustedFiringAngle
+    {
+        get { return _firingAngle - transform.rotation.eulerAngles.z; }
     }
 }
